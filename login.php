@@ -1,26 +1,16 @@
 <?php
 include __DIR__.'/include/init.php';
 $page_title='ورود';
-if (islogin()){
-    redirect('index.php');
-}
-if (method()=='POST'){
-//    $list = $db->query("SELECT * FROM `users`");
-//    $users = $list->fetch_all(MYSQLI_ASSOC);
-    $email = realScape($_REQUEST['email']);
-    $password = hash8($_REQUEST['pass']);
-    $check=false;
+
+if(method()=='POST'){
+    $email=realScape($_REQUEST['email']);
+    $pass=hash8($_REQUEST['pass']);
     foreach ($users as $user){
-        if($user['email']==$email && $user['password']==$password){
-            $check=true;
-            $_SESSION['id']=$user['authorId'];
+        if ($user['email']==$email && $user['password']==$pass){
+            $_SESSION['id']=$user['id'];
+            $_SESSION['token']=$user['password'];
+            redirect('index.php');
         }
-    }
-    if($check){
-        header("location: index.php");
-    }
-    else{
-        echo "نام کاربری یا رمز عبور وارد شده صحیح نمی باشد!";
     }
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 include __DIR__.'/include/init.php';
 $page_title='خانه';
+echo $_SESSION['id'];
 ?>
 
 <section id="recent">
