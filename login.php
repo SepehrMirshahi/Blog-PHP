@@ -1,7 +1,9 @@
 <?php
 include __DIR__.'/include/init.php';
 $page_title='ورود';
-
+if(islogin()){
+    redirect('index.php');
+}
 if(method()=='POST'){
     $email=realScape($_REQUEST['email']);
     $pass=hash8($_REQUEST['pass']);

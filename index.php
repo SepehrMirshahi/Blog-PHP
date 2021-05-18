@@ -1,7 +1,9 @@
 <?php
 include __DIR__.'/include/init.php';
 $page_title='خانه';
-echo $_SESSION['id'];
+if (islogin()) {
+    echo $current_user['name'];
+}
 ?>
 
 <section id="recent">

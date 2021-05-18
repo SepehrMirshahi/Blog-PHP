@@ -32,6 +32,19 @@ function realScape($str)
     return $db->real_escape_string($str);
 }
 
+$current_user;
+function islogin(){
+    global $db,$current_user;
+    if (isset($_SESSION['id'])){
+        $query="SELECT * FROM `users` WHERE `id`={$_SESSION['id']}";
+        $result=$db->query($query);
+        $current_user=$result->fetch_assoc();
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 //if (islogin()) {
 //    global $user;
 //    $logsection = '<li class="nav-item"><a>سلام '.$user['name'] .' !</a></li>
