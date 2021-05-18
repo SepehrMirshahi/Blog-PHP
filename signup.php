@@ -8,30 +8,24 @@ if (method() == 'POST') {
         $email = realScape($_REQUEST['email']);
         $pass = hash8($_REQUEST['pass']);
         $check=true;
-        echo 'fuck';
         foreach($users as $user) {
             if ($user['email'] == $email) {
                 $check = false;
             }
         }
-            if($check){
-                $query="INSERT INTO `users` (`name`,`lastName`,`email`,`password`) VALUES ('{$name}','{$lname}','{$email}','{$pass}')";
-                $db->query($query);
-                echo $db->error();
-                echo 'fuck';
-            }
-            else {
-                echo 'کاربری با این ایمیل قبلا ثبت نام کرده است!';
-            }
+        if($check){
+            $query="INSERT INTO `users` (`name`,`lastName`,`email`,`password`) VALUES ('{$name}','{$lname}','{$email}','{$pass}')";
+            $db->query($query);
+            echo 'ثبت نام با موفقیت انجام شد! هم اکنون می توانی وارد شوید!';
+        }
+        else {
+            echo 'کاربری با این ایمیل قبلا ثبت نام کرده است!';
+        }
     }
     else{
         echo 'گذرواژه با تایید آن همخوانی ندارد. لطفا مجدد تلاش نمایید!';
     }
 }
-else{
-    echo 'wrong method';
-}
-echo 'fuck';
 ?>
 <form method="post" action="signup.php">
     <fieldset>
