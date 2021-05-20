@@ -45,17 +45,20 @@ function islogin(){
         return false;
     }
 }
-//if (islogin()) {
-//    global $user;
-//    $logsection = '<li class="nav-item"><a>سلام '.$user['name'] .' !</a></li>
-//        <li class="blog-item"><a role="link" href="addpost.php" class="btn btn-primary">افزودن مطلب</a></li>
-//        <li class="blog-item"><a role="link" href="logout.php" class="btn btn-secondary">خروج از حساب</a></li>';
-//} else {
-//    $logsection = '<li class="blog-item"><a href="signup.php" class="btn btn-primary">عضویت</a></li>
-//        <li class="blog-item"><a href="login.php" class="btn btn-secondary">ورود</a></li>';
-//}
+
+if (islogin()) {
+    $hello='سلام '.$current_user['name'].'!';
+    $logsection ='
+    <a role="link" href="addpost.php" class="btn btn-primary col-lg-5">افزودن مطلب</a>
+    <a role="link" href="logout.php" class="btn btn-secondary col-lg-5">خروج از سایت</a>';
+} else {
+    $hello='';
+    $logsection = '
+    <a role="link" href="signup.php" class="btn btn-primary col-lg-5">عضویت</a>
+    <a role="link" href="login.php" class="btn btn-secondary col-lg-5">ورود</a>';
+}
 register_shutdown_function(function () {
-    global $page_title, $content, $logsection;
+    global $page_title, $content, $logsection,$hello;
     $content = ob_get_clean();
     include __DIR__ . '/layout.php';
 });
