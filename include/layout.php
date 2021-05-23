@@ -32,6 +32,9 @@
         <ul class="navbar">
             <li> <?=$hello?></li>
             <li class="blog-item blog-item1 ">
+            <a href="/">خانه</a>
+            </li>
+            <li class="blog-item blog-item1 ">
             <a href="#">طبیعت</a>
             </li>
             <li class="blog-item">
@@ -41,13 +44,7 @@
             <a href="#">سفرها</a>
             </li>
             <li class="blog-item">
-            <a href="#">حیوانات</a>
-            </li>
-            <li class="blog-item">
-            <a href="#">سبک</a>
-            </li>
-            <li class="blog-item">
-            <a href="#">فن‌آوری</a>
+            <a href="#">فناوری</a>
             </li>
             <li id="nav-btn" class="nav-item w-25">
                 <?=$logsection?>

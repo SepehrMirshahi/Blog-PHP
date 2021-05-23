@@ -10,26 +10,46 @@ if(method()=='POST'){
     $authorId=$current_user['id'];
     $uniqueId=uniqid();
     $catId=(int)$_REQUEST['cat'];
-    $postQuery="INSERT INTO `posts` (`title`,`detail`,`authorId`,`catId`,`uniqueId`) VALUES ('{$title}','{$text}','{$authorId}','{$catId}','{$uniqueId}')";
-    $postuserQuery="INSERT INTO `postuser` (`postId`,`userId`) VALUES ('{$uniqueId}','{$authorId}')";
-    $catpostQuery="INSERT INTO `categoryuser` (`postId`,`categoryId`) VALUES ('{$uniqueId}','{$catId}')";
-    $db->query($postQuery);
-    $db->query($postuserQuery);
-    $db->query($catpostQuery);
+    $check=true;
+    foreach ($posts as $post){
+        if($post['title']==$title){
+            $check=false;
+        }
+    }
+    if ($check) {
+        $postQuery = "INSERT INTO `posts` (`title`,`detail`,`authorId`,`catId`,`uniqueId`) VALUES ('{$title}','{$text}','{$authorId}','{$catId}','{$uniqueId}')";
+        $postuserQuery = "INSERT INTO `postuser` (`postId`,`userId`) VALUES ('{$uniqueId}','{$authorId}')";
+        $catpostQuery = "INSERT INTO `categorypost` (`postId`,`categoryId`) VALUES ('{$uniqueId}','{$catId}')";
+        $db->query($postQuery);
+        $db->query($postuserQuery);
+        $db->query($catpostQuery);
+        if ($db->error==Null) {
+            $alert = '<div class="alert alert-success text-right mx-auto">این مطلب با موفقیت به سایت افزوده شد!</div>';
+        }
+        else{
+            $alert = '<div class="alert alert-danger text-right mx-auto">خطایی در فرایند افزودن مطلب رخ داد!</div>';
+        }
+    }
+    else{
+        $alert = '<div class="alert alert-warning text-right mx-auto">پیش از این مطلبی با این عنوان در سایت منتشر شده است! لطفا عنوان مطلب را تغییر دهید!</div>';
+    }
 }
 ?>
 <form method="post" action="#">
-    <fieldset class="post">
-        <legend>افزودن مطلب</legend>
-        <label for="title">عنوان مطلب:</label><br>
-        <input type="text" id="title" name="title" required><br>
-        <label for="text">متن:</label><br>
-        <textarea name="text" id="text" cols="30" rows="10"></textarea><br>
-        <label> دسته بندی:</label><br>
-        <select name="cat" required>
+    <fieldset class="post text-right">
+        <?php if(isset($alert)){
+            echo $alert;
+        }?>
+        <legend class="w-auto mx-1">افزودن مطلب</legend>
+        <label for="title" class="form-group">عنوان مطلب:</label><br>
+        <input type="text" class="form-control" id="title" name="title" required><br>
+        <label for="text" class="form-group">متن:</label><br>
+        <textarea name="text" class="form-control" id="text" cols="30" rows="10" required></textarea><br>
+        <label class="form-group" for="cat"> دسته بندی:</label><br>
+        <select name="cat" id="cat" class="form-control" required>
             <?php
                 foreach ($categories as $category) {
-                    echo "<option value={$category['id']}>&nbsp;&nbsp;&nbsp;&nbsp;{$category['name']}&nbsp;&nbsp;&nbsp;&nbsp;</option>";
+                    echo "<option value={$category['catId']}>&nbsp;&nbsp;&nbsp;&nbsp;{$category['catName']}&nbsp;&nbsp;&nbsp;&nbsp;</option>";
                 }
             ?>
         </select><br>

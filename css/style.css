@@ -294,6 +294,7 @@ header #nav .navbar .blog-item:hover {
   border-bottom: 3px solid var(--blue);
 }
 header #nav .navbar .blog-item a {
+  text-decoration: none;
   padding: 17px 12px;
   font-size: 14px;
   color: var(--blue);
