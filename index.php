@@ -7,13 +7,13 @@ if (islogin()) {
 ?>
 <!--Recent Posts-->
 <section id="recent" class="py-4">
-    <div class="container row mx-auto justify-content-center">
+    <div class="container row mx-auto text-right justify-content-center">
         <?php
             $recentPost=array_chunk($posts,4,true);
             foreach ($recentPost[0] as $post){
                 $card = new card();
                 $card->postCard = $post;
-                $card->addPostCard();
+                $card->addPostCard(isset($current_user)&&$post['authorId']==$current_user['id']);
             }
         ?>
     </div>
@@ -38,7 +38,7 @@ if (!islogin()){?>
                     با عضویت رایگان در سایت ما نویسنده شوید، مطالب جدید به سایت اضافه کنید و آنها را ویرایش کنید!
                 </p>
             </div>
-            <a href="#" class="call-btn" type="submit">
+            <a href="signup.php" class="call-btn" type="submit">
                 عضویت رایگان!
             </a>
         </div>

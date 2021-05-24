@@ -4,7 +4,7 @@ class card
 {
     public $postCard;
 
-    public function addPostCard()
+    public function addPostCard($edit=false)
     {
         $cat = searchDbById('category', $this->postCard['catId']);
         $author = searchDbById('users', $this->postCard['authorId']);
@@ -32,8 +32,11 @@ class card
             <p>
                 ' . $this->postCard['publish'] . '
             </p>
-        </div>
-    </div>
+        </div>';
+        if($edit){
+            echo'<div><form action="editpost.php" method="post"><button type="submit" name="postid" class="btn btn-sm btn-primary" value="'.$this->postCard['id'].'">ویرایش</button></form> </div>';
+        }
+echo '</div>
 </div>';
     }
 }
