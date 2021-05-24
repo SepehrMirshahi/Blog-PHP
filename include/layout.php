@@ -32,7 +32,7 @@
         <ul class="navbar">
             <li> <?=$hello?></li>
             <li class="blog-item blog-item1 ">
-            <a href="/">خانه</a>
+            <a href="./index.php">خانه</a>
             </li>
             <li class="blog-item blog-item1 ">
             <a href="#">طبیعت</a>
@@ -70,7 +70,9 @@
         </div>
 </header>
 <!-- main -->
+<main>
 <?=$content ?>
+</main>
 <!-- footer -->
 <footer>
     <div class="container">
