@@ -2,15 +2,21 @@
 $db = new mysqli('localhost', 'root', '', 'roshdana_blog');
 ob_start();
 session_start();
-$user_query = $db->query("SELECT * FROM `users`");
+$user_query = $db->query("SELECT * FROM `users` ORDER BY `joinDate`");
 $users = $user_query->fetch_all(MYSQLI_ASSOC);
 
-$post_query = $db->query("SELECT * FROM `posts`");
+$post_query = $db->query("SELECT * FROM `posts` ORDER BY `publish` DESC");
 $posts = $post_query->fetch_all(MYSQLI_ASSOC);
 
 $category_query = $db->query("SELECT * FROM `category`");
 $categories = $category_query->fetch_all(MYSQLI_ASSOC);
 
+function searchDbById($table,$id){
+    global $db;
+    $query="SELECT * FROM `{$table}` where `id`='{$id}'";
+    $result=$db->query($query);
+    return $result->fetch_assoc();
+}
 function redirect($url)
 {
     header("location: $url");
@@ -36,9 +42,7 @@ $current_user;
 function islogin(){
     global $db,$current_user;
     if (isset($_SESSION['id'])){
-        $query="SELECT * FROM `users` WHERE `id`={$_SESSION['id']}";
-        $result=$db->query($query);
-        $current_user=$result->fetch_assoc();
+        $current_user=searchDbById('users',$_SESSION['id']);
         return true;
     }
     else{
@@ -57,6 +61,9 @@ if (islogin()) {
     <a role="link" href="signup.php" class="btn btn-primary col-lg-5">عضویت</a>
     <a role="link" href="login.php" class="btn btn-secondary col-lg-5">ورود</a>';
 }
+spl_autoload_register(function($class){
+    include __DIR__."/components/{$class}.php";
+});
 register_shutdown_function(function () {
     global $page_title, $content, $logsection,$hello;
     $content = ob_get_clean();

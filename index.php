@@ -6,12 +6,16 @@ if (islogin()) {
 }
 ?>
 
-<section id="recent">
-    <div class="container">
+<section id="recent" class="py-4">
+    <div class="container row mx-auto justify-content-center">
         <?php
-            foreach ($posts as $post){
-                card($post['catId'],$post['catName'],$post['title'],'ads',$post['publish']);
+            $recentPost=array_chunk($posts,4,true);
+            foreach ($recentPost[0] as $post){
+                $card = new card();
+                $card->postCard = $post;
+                $card->addPostCard();
             }
         ?>
     </div>
 </section>
+

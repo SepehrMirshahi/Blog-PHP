@@ -1,26 +1,39 @@
 <?php
-function card($catId,$category,$title,$author,$date){
-echo '<div class="card">
+
+class card
+{
+    public $postCard;
+
+    public function addPostCard()
+    {
+        $cat = searchDbById('category', $this->postCard['catId']);
+        $author = searchDbById('users', $this->postCard['authorId']);
+        echo
+'<div class="card col-lg-5 col-md-5 col-sm-11 m-1">
     <figure class="figure">
         <img src="./img/Layer 4-1.png" alt="user">
-        <div class="tag tag-'.$catId.'">
-            <p>'.$category.'</p>
+        <div class="tag tag-' . $cat['catNameEn'] . '">
+            <p>' . $cat['catName'] . '</p>
         </div>
     </figure>
-    <h6 class="card-headline">
-        '.$title.'
-    </h6>
+    <h2 class="card-header">
+        '.$this->postCard['title'].'
+    </h2>
+    <h2 class="card-body">
+        ' . $this->postCard['detail'] . '
+    </h2>
     <div class="author-date">
         <div class="author">
             <a href="#">
-                '.$author.'
+                ' . $author['name'] . ' ' . $author['lastName'] . '
             </a>
         </div>
         <div class="date">
             <p>
-                '.$date.'
+                ' . $this->postCard['publish'] . '
             </p>
         </div>
     </div>
 </div>';
+    }
 }

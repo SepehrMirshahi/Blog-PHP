@@ -17,7 +17,7 @@ if(method()=='POST'){
         }
     }
     if ($check) {
-        $postQuery = "INSERT INTO `posts` (`title`,`detail`,`authorId`,`catId`,`uniqueId`) VALUES ('{$title}','{$text}','{$authorId}','{$catId}','{$uniqueId}')";
+        $postQuery = "INSERT INTO `posts` (`title`,`detail`,`authorId`,`id`,`uniqueId`) VALUES ('{$title}','{$text}','{$authorId}','{$catId}','{$uniqueId}')";
         $postuserQuery = "INSERT INTO `postuser` (`postId`,`userId`) VALUES ('{$uniqueId}','{$authorId}')";
         $catpostQuery = "INSERT INTO `categorypost` (`postId`,`categoryId`) VALUES ('{$uniqueId}','{$catId}')";
         $db->query($postQuery);
