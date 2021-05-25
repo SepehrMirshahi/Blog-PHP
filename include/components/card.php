@@ -34,7 +34,7 @@ class card
             </p>
         </div>';
         if($edit){
-            echo'<div><form action="editpost.php" method="post"><button type="submit" name="postid" class="btn btn-sm btn-primary" value="'.$this->postCard['id'].'">ویرایش</button></form> </div>';
+            echo'<div><form action="editpost.php" method="get"><button type="submit" name="postid" class="btn btn-sm btn-primary" value="'.$this->postCard['id'].'">ویرایش</button></form> </div>';
         }
 echo '</div>
 </div>';

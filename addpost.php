@@ -49,7 +49,7 @@ if(method()=='POST'){
         <select name="cat" id="cat" class="form-control" required>
             <?php
                 foreach ($categories as $category) {
-                    echo "<option value={$category['catId']}>&nbsp;&nbsp;&nbsp;&nbsp;{$category['catName']}&nbsp;&nbsp;&nbsp;&nbsp;</option>";
+                    echo "<option value={$category['id']}>{$category['catName']}</option>";
                 }
             ?>
         </select><br>
