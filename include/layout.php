@@ -34,18 +34,19 @@
             <li class="blog-item blog-item1 ">
             <a href="./index.php">خانه</a>
             </li>
-            <li class="blog-item blog-item1 ">
-            <a href="#">طبیعت</a>
-            </li>
-            <li class="blog-item">
-            <a href="#">مردم</a>
-            </li>
-            <li class="blog-item">
-            <a href="#">سفرها</a>
-            </li>
-            <li class="blog-item">
-            <a href="#">فناوری</a>
-            </li>
+            <?=$catlist?>
+<!--            <li class="blog-item blog-item1 ">-->
+<!--            <a href="#">طبیعت</a>-->
+<!--            </li>-->
+<!--            <li class="blog-item">-->
+<!--            <a href="#">مردم</a>-->
+<!--            </li>-->
+<!--            <li class="blog-item">-->
+<!--            <a href="#">سفرها</a>-->
+<!--            </li>-->
+<!--            <li class="blog-item">-->
+<!--            <a href="#">فناوری</a>-->
+<!--            </li>-->
             <li id="nav-btn" class="nav-item w-25">
                 <?=$logsection?>
             </li>

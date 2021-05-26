@@ -17,6 +17,15 @@ function searchDbById($table,$id){
     $result=$db->query($query);
     return $result->fetch_assoc();
 }
+
+$catlist='';
+foreach ($categories as $category){
+    $catlist=$catlist.'
+    <li class="blog-item">
+        <a href="post.php?catid='.$category['id'].'">'.$category['catName'].'</a>
+    </li>';
+}
+
 function redirect($url)
 {
     header("location: $url");
@@ -65,7 +74,7 @@ spl_autoload_register(function($class){
     include __DIR__."/components/{$class}.php";
 });
 register_shutdown_function(function () {
-    global $page_title, $content, $logsection,$hello;
+    global $page_title, $content, $logsection,$hello,$catlist;
     $content = ob_get_clean();
     include __DIR__ . '/layout.php';
 });
