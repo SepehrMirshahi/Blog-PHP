@@ -882,3 +882,10 @@ fieldset{
 .page-title{
   font-size: 2.5em!important;
 }
+.post-show{
+    border: 1px solid #999999;
+    border-radius: 100px;
+    text-align: right;
+    text-align: justify;
+    line-height: 25px;
+}

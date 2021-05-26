@@ -7,9 +7,9 @@ if (method()=='POST'){
     if($result){
         $alert= '<div class="alert alert-success text-right mx-auto">ویرایش مطلب با موفقیت انجام شد!</div>';
     }
-}
-else{
-    $alert= '<div class="alert alert-danger text-right mx-auto">خطایی در فرایند ویرایش مطلب رخ داد!</div>';
+    else{
+        $alert= '<div class="alert alert-danger text-right mx-auto">خطایی در فرایند ویرایش مطلب رخ داد!</div>';
+    }
 }
 
 if (isset($_REQUEST)) {

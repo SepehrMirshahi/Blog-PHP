@@ -1,9 +1,7 @@
 <?php
 include __DIR__.'/include/init.php';
 $page_title='خانه';
-if (islogin()) {
-    echo $current_user['name'];
-}
+islogin();
 ?>
 <!--Recent Posts-->
 <section id="recent" class="py-4">
